@@ -1,0 +1,81 @@
+{
+  "@@locale": "en",
+  "appTitle": "Gold Calculator",
+  "navPrices": "Prices",
+  "navUnit": "Unit",
+  "navRetail": "Retail",
+  "navZakat": "Zakat",
+  "languageToggleTooltip": "Change language",
+
+  "priceScreenTitle": "Gold Prices",
+  "priceLoadError": "Could not load prices: {error}",
+  "@priceLoadError": {
+    "placeholders": { "error": {} }
+  },
+  "karatHeader": "Karat",
+  "buyHeader": "Buy",
+  "sellHeader": "Sell",
+  "changeHeader": "Change",
+  "periodDayLabel": "1D",
+  "periodWeekLabel": "1W",
+  "periodMonthLabel": "1M",
+  "lastUpdatedLabel": "Last updated: {value}",
+  "@lastUpdatedLabel": {
+    "placeholders": { "value": {} }
+  },
+  "cachedDataWarning": "Showing cached data — could not reach the server",
+
+  "retailScreenTitle": "Retail Price Breakdown",
+  "goldKaratLabel": "Gold karat",
+  "totalRetailPriceLabel": "Total retail price",
+  "weightGramsLabel": "Weight (grams)",
+  "goldMarketPriceLabel": "Gold market price per gram",
+  "taxPercentLabel": "Tax %",
+  "pureGoldValueLabel": "Pure gold value",
+  "taxAmountLabel": "Tax amount",
+  "priceWithoutTaxLabel": "Price without tax",
+  "workmanshipChargeLabel": "Workmanship charge",
+  "workmanshipPerGramLabel": "Workmanship per gram",
+  "workmanshipPercentLabel": "Workmanship %",
+  "dealGreatLabel": "Great deal",
+  "dealFairLabel": "Fair price",
+  "dealOvervaluedLabel": "Overvalued",
+  "dealBasisStatic": "Based on typical industry range",
+  "dealBasisPersonal": "Based on your last {count} purchases",
+  "@dealBasisPersonal": {
+    "placeholders": { "count": {} }
+  },
+  "saveCalculationTooltip": "Save this calculation to your history",
+  "calculationSavedMessage": "Saved to your purchase history",
+
+  "unitScreenTitle": "Unit Calculator",
+  "weightLabel": "Weight",
+  "unitLabel": "Unit",
+  "buyPricePerUnitLabel": "Buy price per {unit}",
+  "@buyPricePerUnitLabel": {
+    "placeholders": { "unit": {} }
+  },
+  "sellPricePerUnitLabel": "Sell price per {unit}",
+  "@sellPricePerUnitLabel": {
+    "placeholders": { "unit": {} }
+  },
+  "currencyLabel": "Currency",
+  "weightEquivalentLabel": "Weight equivalent",
+  "totalCostLabel": "Total cost",
+  "totalRevenueLabel": "Total revenue",
+  "profitLabel": "Profit",
+  "unitGram": "Grams",
+  "unitOunce": "Ounces",
+  "unitKilogram": "Kilograms",
+  "unitTola": "Tolas",
+
+  "zakatScreenTitle": "Zakat Calculator",
+  "goldWeightZakatLabel": "Total gold weight (grams, 24k-equivalent)",
+  "goldPrice24kLabel": "24k gold price per gram",
+  "hawlMetLabel": "Hawl met (held for one lunar year)",
+  "nisabThresholdLabel": "Nisab threshold value",
+  "zakatableValueLabel": "Your zakatable value",
+  "nisabMetMessage": "Nisab met — zakat is due",
+  "nisabNotMetMessage": "Below nisab — no zakat due",
+  "zakatDueLabel": "Zakat due"
+}
