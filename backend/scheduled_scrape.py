@@ -20,3 +20,4 @@ if __name__ == '__main__':
         logging.info('Scheduled scrape completed successfully.')
     except Exception:
         logging.exception('Scheduled scrape failed.')
+        raise
