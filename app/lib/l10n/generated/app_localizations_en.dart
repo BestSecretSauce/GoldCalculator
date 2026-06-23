@@ -124,6 +124,56 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calculationSavedMessage => 'Saved to your purchase history';
 
   @override
+  String get shopNameLabel => 'Shop name (optional)';
+
+  @override
+  String get addPhotoLabel => 'Add photo';
+
+  @override
+  String get takePhotoLabel => 'Take photo';
+
+  @override
+  String get chooseFromGalleryLabel => 'Choose from gallery';
+
+  @override
+  String get removePhotoLabel => 'Remove photo';
+
+  @override
+  String get saveRecordTitle => 'Save purchase record';
+
+  @override
+  String get saveButtonLabel => 'Save';
+
+  @override
+  String get cancelButtonLabel => 'Cancel';
+
+  @override
+  String get purchaseHistoryTitle => 'Purchase History';
+
+  @override
+  String get noSavedRecordsMessage => 'No saved purchases yet';
+
+  @override
+  String get deleteRecordTooltip => 'Delete';
+
+  @override
+  String get deleteConfirmTitle => 'Delete this record?';
+
+  @override
+  String get deleteConfirmMessage =>
+      'This will permanently remove the saved record and photo.';
+
+  @override
+  String get imagePickerUnsupportedMessage =>
+      'Camera/gallery isn\'t supported on this device';
+
+  @override
+  String get unknownShopLabel => 'Unknown shop';
+
+  @override
+  String get dateLabel => 'Date';
+
+  @override
   String get unitScreenTitle => 'Unit Calculator';
 
   @override

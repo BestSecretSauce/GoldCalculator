@@ -7,10 +7,12 @@ import '../../../app/widgets/stat_row.dart';
 import '../../../core/models/gold_price_snapshot.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../price_tracking/application/gold_price_provider.dart';
-import '../application/workmanship_history_provider.dart';
+import '../application/purchase_records_provider.dart';
 import '../logic/deal_quality_evaluator.dart';
 import '../logic/retail_breakdown_calculator.dart';
+import 'purchase_history_screen.dart';
 import 'widgets/deal_indicator.dart';
+import 'widgets/save_purchase_dialog.dart';
 
 class RetailBreakdownScreen extends ConsumerStatefulWidget {
   const RetailBreakdownScreen({super.key});
@@ -88,7 +90,8 @@ class _RetailBreakdownScreenState
     );
 
     final hasValidCalculation = retailPrice > 0 && weight > 0;
-    final history = ref.watch(workmanshipHistoryProvider).valueOrNull ?? [];
+    final records = ref.watch(purchaseRecordsProvider).valueOrNull ?? [];
+    final history = records.map((r) => r.workmanshipPercent).toList();
     final assessment = hasValidCalculation
         ? DealQualityEvaluator.evaluate(
             workmanshipPercent: result.workmanshipPercent,
@@ -99,7 +102,18 @@ class _RetailBreakdownScreenState
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.retailScreenTitle),
-        actions: const [LanguageToggleButton()],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.history),
+            tooltip: l10n.purchaseHistoryTitle,
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const PurchaseHistoryScreen(),
+              ),
+            ),
+          ),
+          const LanguageToggleButton(),
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
@@ -228,9 +242,17 @@ class _RetailBreakdownScreenState
               icon: const Icon(Icons.bookmark_add_outlined),
               label: Text(l10n.saveCalculationTooltip),
               onPressed: () async {
-                await ref
-                    .read(workmanshipHistoryProvider.notifier)
-                    .addRecord(result.workmanshipPercent);
+                final saveResult = await showSavePurchaseDialog(context);
+                if (saveResult == null) return;
+                await ref.read(purchaseRecordsProvider.notifier).addRecord(
+                      retailPrice: retailPrice,
+                      weightGrams: weight,
+                      goldPricePerGram: goldPrice,
+                      workmanshipPercent: result.workmanshipPercent,
+                      shopName: saveResult.shopName,
+                      pickedImagePath: saveResult.imagePath,
+                      karat: _selectedKarat,
+                    );
                 if (!context.mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(l10n.calculationSavedMessage)),

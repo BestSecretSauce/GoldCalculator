@@ -314,6 +314,102 @@ abstract class AppLocalizations {
   /// **'Saved to your purchase history'**
   String get calculationSavedMessage;
 
+  /// No description provided for @shopNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop name (optional)'**
+  String get shopNameLabel;
+
+  /// No description provided for @addPhotoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photo'**
+  String get addPhotoLabel;
+
+  /// No description provided for @takePhotoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get takePhotoLabel;
+
+  /// No description provided for @chooseFromGalleryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get chooseFromGalleryLabel;
+
+  /// No description provided for @removePhotoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get removePhotoLabel;
+
+  /// No description provided for @saveRecordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Save purchase record'**
+  String get saveRecordTitle;
+
+  /// No description provided for @saveButtonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get saveButtonLabel;
+
+  /// No description provided for @cancelButtonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButtonLabel;
+
+  /// No description provided for @purchaseHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase History'**
+  String get purchaseHistoryTitle;
+
+  /// No description provided for @noSavedRecordsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved purchases yet'**
+  String get noSavedRecordsMessage;
+
+  /// No description provided for @deleteRecordTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteRecordTooltip;
+
+  /// No description provided for @deleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this record?'**
+  String get deleteConfirmTitle;
+
+  /// No description provided for @deleteConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This will permanently remove the saved record and photo.'**
+  String get deleteConfirmMessage;
+
+  /// No description provided for @imagePickerUnsupportedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera/gallery isn\'t supported on this device'**
+  String get imagePickerUnsupportedMessage;
+
+  /// No description provided for @unknownShopLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown shop'**
+  String get unknownShopLabel;
+
+  /// No description provided for @dateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get dateLabel;
+
   /// No description provided for @unitScreenTitle.
   ///
   /// In en, this message translates to:

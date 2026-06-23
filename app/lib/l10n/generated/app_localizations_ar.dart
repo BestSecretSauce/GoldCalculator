@@ -124,6 +124,55 @@ class AppLocalizationsAr extends AppLocalizations {
   String get calculationSavedMessage => 'تم الحفظ في سجل مشترياتك';
 
   @override
+  String get shopNameLabel => 'اسم المحل (اختياري)';
+
+  @override
+  String get addPhotoLabel => 'إضافة صورة';
+
+  @override
+  String get takePhotoLabel => 'تصوير';
+
+  @override
+  String get chooseFromGalleryLabel => 'اختيار من المعرض';
+
+  @override
+  String get removePhotoLabel => 'إزالة الصورة';
+
+  @override
+  String get saveRecordTitle => 'حفظ سجل الشراء';
+
+  @override
+  String get saveButtonLabel => 'حفظ';
+
+  @override
+  String get cancelButtonLabel => 'إلغاء';
+
+  @override
+  String get purchaseHistoryTitle => 'سجل المشتريات';
+
+  @override
+  String get noSavedRecordsMessage => 'لا توجد مشتريات محفوظة بعد';
+
+  @override
+  String get deleteRecordTooltip => 'حذف';
+
+  @override
+  String get deleteConfirmTitle => 'حذف هذا السجل؟';
+
+  @override
+  String get deleteConfirmMessage => 'سيتم حذف السجل والصورة المحفوظة نهائيًا.';
+
+  @override
+  String get imagePickerUnsupportedMessage =>
+      'الكاميرا/المعرض غير مدعومة على هذا الجهاز';
+
+  @override
+  String get unknownShopLabel => 'محل غير معروف';
+
+  @override
+  String get dateLabel => 'التاريخ';
+
+  @override
   String get unitScreenTitle => 'حاسبة الوحدات';
 
   @override
