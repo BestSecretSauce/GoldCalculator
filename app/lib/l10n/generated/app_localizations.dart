@@ -110,11 +110,11 @@ abstract class AppLocalizations {
   /// **'Prices'**
   String get navPrices;
 
-  /// No description provided for @navUnit.
+  /// No description provided for @navInvestment.
   ///
   /// In en, this message translates to:
-  /// **'Unit'**
-  String get navUnit;
+  /// **'Investment'**
+  String get navInvestment;
 
   /// No description provided for @navRetail.
   ///
@@ -211,6 +211,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Gold karat'**
   String get goldKaratLabel;
+
+  /// No description provided for @calculateFromLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculate from'**
+  String get calculateFromLabel;
 
   /// No description provided for @totalRetailPriceLabel.
   ///
@@ -410,35 +416,23 @@ abstract class AppLocalizations {
   /// **'Date'**
   String get dateLabel;
 
-  /// No description provided for @unitScreenTitle.
+  /// No description provided for @investmentScreenTitle.
   ///
   /// In en, this message translates to:
-  /// **'Unit Calculator'**
-  String get unitScreenTitle;
+  /// **'Gold Investment'**
+  String get investmentScreenTitle;
 
-  /// No description provided for @weightLabel.
+  /// No description provided for @investmentIntroMessage.
   ///
   /// In en, this message translates to:
-  /// **'Weight'**
-  String get weightLabel;
+  /// **'See how your gold would have grown if you invested a fixed amount on a regular schedule (dollar-cost averaging).'**
+  String get investmentIntroMessage;
 
-  /// No description provided for @unitLabel.
+  /// No description provided for @contributionAmountLabel.
   ///
   /// In en, this message translates to:
-  /// **'Unit'**
-  String get unitLabel;
-
-  /// No description provided for @buyPricePerUnitLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Buy price per {unit}'**
-  String buyPricePerUnitLabel(Object unit);
-
-  /// No description provided for @sellPricePerUnitLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Sell price per {unit}'**
-  String sellPricePerUnitLabel(Object unit);
+  /// **'Amount per contribution'**
+  String get contributionAmountLabel;
 
   /// No description provided for @currencyLabel.
   ///
@@ -446,53 +440,83 @@ abstract class AppLocalizations {
   /// **'Currency'**
   String get currencyLabel;
 
-  /// No description provided for @weightEquivalentLabel.
+  /// No description provided for @frequencyLabel.
   ///
   /// In en, this message translates to:
-  /// **'Weight equivalent'**
-  String get weightEquivalentLabel;
+  /// **'Contribution frequency'**
+  String get frequencyLabel;
 
-  /// No description provided for @totalCostLabel.
+  /// No description provided for @frequencyWeeklyLabel.
   ///
   /// In en, this message translates to:
-  /// **'Total cost'**
-  String get totalCostLabel;
+  /// **'Weekly'**
+  String get frequencyWeeklyLabel;
 
-  /// No description provided for @totalRevenueLabel.
+  /// No description provided for @frequencyBiweeklyLabel.
   ///
   /// In en, this message translates to:
-  /// **'Total revenue'**
-  String get totalRevenueLabel;
+  /// **'Every 2 weeks'**
+  String get frequencyBiweeklyLabel;
 
-  /// No description provided for @profitLabel.
+  /// No description provided for @frequencyMonthlyLabel.
   ///
   /// In en, this message translates to:
-  /// **'Profit'**
-  String get profitLabel;
+  /// **'Monthly'**
+  String get frequencyMonthlyLabel;
 
-  /// No description provided for @unitGram.
+  /// No description provided for @startDateLabel.
   ///
   /// In en, this message translates to:
-  /// **'Grams'**
-  String get unitGram;
+  /// **'Start date'**
+  String get startDateLabel;
 
-  /// No description provided for @unitOunce.
+  /// No description provided for @noHistoryDataMessage.
   ///
   /// In en, this message translates to:
-  /// **'Ounces'**
-  String get unitOunce;
+  /// **'Not enough price history yet to run this simulation'**
+  String get noHistoryDataMessage;
 
-  /// No description provided for @unitKilogram.
+  /// No description provided for @purchasesCountLabel.
   ///
   /// In en, this message translates to:
-  /// **'Kilograms'**
-  String get unitKilogram;
+  /// **'Contributions made'**
+  String get purchasesCountLabel;
 
-  /// No description provided for @unitTola.
+  /// No description provided for @totalInvestedLabel.
   ///
   /// In en, this message translates to:
-  /// **'Tolas'**
-  String get unitTola;
+  /// **'Total invested'**
+  String get totalInvestedLabel;
+
+  /// No description provided for @totalGramsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold accumulated'**
+  String get totalGramsLabel;
+
+  /// No description provided for @averageCostLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Average cost per gram'**
+  String get averageCostLabel;
+
+  /// No description provided for @currentPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current price per gram'**
+  String get currentPriceLabel;
+
+  /// No description provided for @currentValueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current value'**
+  String get currentValueLabel;
+
+  /// No description provided for @profitLossLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Profit / Loss'**
+  String get profitLossLabel;
 
   /// No description provided for @zakatScreenTitle.
   ///

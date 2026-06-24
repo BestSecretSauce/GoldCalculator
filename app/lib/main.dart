@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app/locale_controller.dart';
 import 'app/theme.dart';
+import 'features/investment/presentation/investment_screen.dart';
 import 'features/price_tracking/presentation/price_tracking_screen.dart';
 import 'features/retail_breakdown/presentation/retail_breakdown_screen.dart';
-import 'features/unit_calculator/presentation/unit_calculator_screen.dart';
 import 'features/zakat/presentation/zakat_screen.dart';
 import 'l10n/generated/app_localizations.dart';
 
@@ -51,7 +51,7 @@ class _HomeShellState extends State<HomeShell> {
 
   static const _screens = [
     PriceTrackingScreen(),
-    UnitCalculatorScreen(),
+    InvestmentScreen(),
     RetailBreakdownScreen(),
     ZakatScreen(),
   ];
@@ -69,7 +69,8 @@ class _HomeShellState extends State<HomeShell> {
           NavigationDestination(
               icon: const Icon(Icons.trending_up), label: l10n.navPrices),
           NavigationDestination(
-              icon: const Icon(Icons.calculate), label: l10n.navUnit),
+              icon: const Icon(Icons.savings_outlined),
+              label: l10n.navInvestment),
           NavigationDestination(
               icon: const Icon(Icons.receipt_long), label: l10n.navRetail),
           NavigationDestination(

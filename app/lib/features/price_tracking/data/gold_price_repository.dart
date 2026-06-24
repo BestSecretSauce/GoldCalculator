@@ -21,15 +21,22 @@ class GoldPriceRepository {
       await _cache.save(jsonEncode(json));
       return GoldPriceSnapshot.fromJson(json);
     } on ApiException {
-      final cachedJson = await _cache.load();
-      if (cachedJson != null) {
-        return GoldPriceSnapshot.fromJson(
-          jsonDecode(cachedJson) as Map<String, dynamic>,
-          isFromCache: true,
-        );
-      }
+      final cached = await loadCached();
+      if (cached != null) return cached;
       rethrow;
     }
+  }
+
+  /// Reads the last successfully fetched snapshot from local storage without
+  /// touching the network, so the UI has something to show immediately while
+  /// a slow/cold-starting backend wakes up.
+  Future<GoldPriceSnapshot?> loadCached() async {
+    final cachedJson = await _cache.load();
+    if (cachedJson == null) return null;
+    return GoldPriceSnapshot.fromJson(
+      jsonDecode(cachedJson) as Map<String, dynamic>,
+      isFromCache: true,
+    );
   }
 
   Future<GoldPriceSnapshot> refresh() async {

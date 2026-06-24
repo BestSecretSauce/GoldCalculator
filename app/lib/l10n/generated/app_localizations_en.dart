@@ -15,7 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navPrices => 'Prices';
 
   @override
-  String get navUnit => 'Unit';
+  String get navInvestment => 'Investment';
 
   @override
   String get navRetail => 'Retail';
@@ -69,6 +69,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get goldKaratLabel => 'Gold karat';
+
+  @override
+  String get calculateFromLabel => 'Calculate from';
 
   @override
   String get totalRetailPriceLabel => 'Total retail price';
@@ -174,50 +177,57 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dateLabel => 'Date';
 
   @override
-  String get unitScreenTitle => 'Unit Calculator';
+  String get investmentScreenTitle => 'Gold Investment';
 
   @override
-  String get weightLabel => 'Weight';
+  String get investmentIntroMessage =>
+      'See how your gold would have grown if you invested a fixed amount on a regular schedule (dollar-cost averaging).';
 
   @override
-  String get unitLabel => 'Unit';
-
-  @override
-  String buyPricePerUnitLabel(Object unit) {
-    return 'Buy price per $unit';
-  }
-
-  @override
-  String sellPricePerUnitLabel(Object unit) {
-    return 'Sell price per $unit';
-  }
+  String get contributionAmountLabel => 'Amount per contribution';
 
   @override
   String get currencyLabel => 'Currency';
 
   @override
-  String get weightEquivalentLabel => 'Weight equivalent';
+  String get frequencyLabel => 'Contribution frequency';
 
   @override
-  String get totalCostLabel => 'Total cost';
+  String get frequencyWeeklyLabel => 'Weekly';
 
   @override
-  String get totalRevenueLabel => 'Total revenue';
+  String get frequencyBiweeklyLabel => 'Every 2 weeks';
 
   @override
-  String get profitLabel => 'Profit';
+  String get frequencyMonthlyLabel => 'Monthly';
 
   @override
-  String get unitGram => 'Grams';
+  String get startDateLabel => 'Start date';
 
   @override
-  String get unitOunce => 'Ounces';
+  String get noHistoryDataMessage =>
+      'Not enough price history yet to run this simulation';
 
   @override
-  String get unitKilogram => 'Kilograms';
+  String get purchasesCountLabel => 'Contributions made';
 
   @override
-  String get unitTola => 'Tolas';
+  String get totalInvestedLabel => 'Total invested';
+
+  @override
+  String get totalGramsLabel => 'Gold accumulated';
+
+  @override
+  String get averageCostLabel => 'Average cost per gram';
+
+  @override
+  String get currentPriceLabel => 'Current price per gram';
+
+  @override
+  String get currentValueLabel => 'Current value';
+
+  @override
+  String get profitLossLabel => 'Profit / Loss';
 
   @override
   String get zakatScreenTitle => 'Zakat Calculator';

@@ -15,7 +15,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get navPrices => 'الأسعار';
 
   @override
-  String get navUnit => 'الوحدة';
+  String get navInvestment => 'الاستثمار';
 
   @override
   String get navRetail => 'التجزئة';
@@ -69,6 +69,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get goldKaratLabel => 'عيار الذهب';
+
+  @override
+  String get calculateFromLabel => 'احسب باستخدام';
 
   @override
   String get totalRetailPriceLabel => 'السعر الإجمالي للتجزئة';
@@ -173,50 +176,57 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dateLabel => 'التاريخ';
 
   @override
-  String get unitScreenTitle => 'حاسبة الوحدات';
+  String get investmentScreenTitle => 'استثمار الذهب';
 
   @override
-  String get weightLabel => 'الوزن';
+  String get investmentIntroMessage =>
+      'تعرف على نمو استثمارك في الذهب لو كنت تستثمر مبلغًا ثابتًا على فترات منتظمة (الشراء بالتكلفة الدولارية المتوسطة).';
 
   @override
-  String get unitLabel => 'الوحدة';
-
-  @override
-  String buyPricePerUnitLabel(Object unit) {
-    return 'سعر الشراء لكل $unit';
-  }
-
-  @override
-  String sellPricePerUnitLabel(Object unit) {
-    return 'سعر البيع لكل $unit';
-  }
+  String get contributionAmountLabel => 'المبلغ لكل دفعة';
 
   @override
   String get currencyLabel => 'العملة';
 
   @override
-  String get weightEquivalentLabel => 'ما يعادل الوزن';
+  String get frequencyLabel => 'تكرار الدفعات';
 
   @override
-  String get totalCostLabel => 'التكلفة الإجمالية';
+  String get frequencyWeeklyLabel => 'أسبوعيًا';
 
   @override
-  String get totalRevenueLabel => 'الإيراد الإجمالي';
+  String get frequencyBiweeklyLabel => 'كل أسبوعين';
 
   @override
-  String get profitLabel => 'الربح';
+  String get frequencyMonthlyLabel => 'شهريًا';
 
   @override
-  String get unitGram => 'جرام';
+  String get startDateLabel => 'تاريخ البدء';
 
   @override
-  String get unitOunce => 'أونصة';
+  String get noHistoryDataMessage =>
+      'لا تتوفر بيانات أسعار كافية لإجراء هذا المحاكاة حاليًا';
 
   @override
-  String get unitKilogram => 'كيلوجرام';
+  String get purchasesCountLabel => 'عدد الدفعات';
 
   @override
-  String get unitTola => 'تولة';
+  String get totalInvestedLabel => 'إجمالي المستثمر';
+
+  @override
+  String get totalGramsLabel => 'كمية الذهب المتراكمة';
+
+  @override
+  String get averageCostLabel => 'متوسط التكلفة للجرام';
+
+  @override
+  String get currentPriceLabel => 'السعر الحالي للجرام';
+
+  @override
+  String get currentValueLabel => 'القيمة الحالية';
+
+  @override
+  String get profitLossLabel => 'الربح / الخسارة';
 
   @override
   String get zakatScreenTitle => 'حاسبة الزكاة';

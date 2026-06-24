@@ -48,7 +48,7 @@ class ApiClient {
 
   Future<http.Response> _send(Future<http.Response> Function() request) async {
     try {
-      return await request();
+      return await request().timeout(const Duration(seconds: 30));
     } on ApiException {
       rethrow;
     } catch (_) {

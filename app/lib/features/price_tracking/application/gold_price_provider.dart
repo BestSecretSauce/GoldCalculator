@@ -20,8 +20,28 @@ GoldPriceRepository goldPriceRepository(Ref ref) {
 @riverpod
 class GoldPrices extends _$GoldPrices {
   @override
-  Future<GoldPriceSnapshot> build() {
-    return ref.read(goldPriceRepositoryProvider).fetchLatest();
+  Future<GoldPriceSnapshot> build() async {
+    final repository = ref.read(goldPriceRepositoryProvider);
+    final cached = await repository.loadCached();
+    if (cached == null) {
+      return repository.fetchLatest();
+    }
+    // Show the cached snapshot immediately, then quietly try to replace it
+    // with fresh data — keeps the UI from blocking on a slow/cold-starting
+    // backend instead of sitting on a spinner.
+    _refreshInBackground(repository);
+    return cached;
+  }
+
+  Future<void> _refreshInBackground(GoldPriceRepository repository) async {
+    try {
+      final fresh = await repository.fetchLatest();
+      if (!fresh.isFromCache) {
+        state = AsyncData(fresh);
+      }
+    } catch (_) {
+      // Keep showing the cached snapshot; the user can pull-to-refresh.
+    }
   }
 
   Future<void> refresh() async {
