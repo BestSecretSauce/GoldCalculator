@@ -20,7 +20,12 @@ class KaratPriceTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final entries = karats.entries.toList();
+    final entries = karats.entries.toList()
+      ..sort((a, b) {
+        final aNum = int.tryParse(a.key.replaceAll(RegExp(r'[^0-9]'), '')) ?? 0;
+        final bNum = int.tryParse(b.key.replaceAll(RegExp(r'[^0-9]'), '')) ?? 0;
+        return bNum.compareTo(aNum);
+      });
 
     return Card(
       child: Padding(
