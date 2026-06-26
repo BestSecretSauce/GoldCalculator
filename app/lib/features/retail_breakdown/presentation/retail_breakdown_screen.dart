@@ -8,10 +8,10 @@ import '../../../core/models/gold_price_snapshot.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../price_tracking/application/gold_price_provider.dart';
 import '../application/purchase_records_provider.dart';
-import '../logic/deal_quality_evaluator.dart';
+// import '../logic/deal_quality_evaluator.dart';
 import '../logic/retail_breakdown_calculator.dart';
 import 'purchase_history_screen.dart';
-import 'widgets/deal_indicator.dart';
+// import 'widgets/deal_indicator.dart';
 import 'widgets/save_purchase_dialog.dart';
 
 class RetailBreakdownScreen extends ConsumerStatefulWidget {
@@ -135,14 +135,6 @@ class _RetailBreakdownScreenState
     final hasValidCalculation = inputValue > 0 && weight > 0 && goldPrice > 0;
     _syncDerivedFields(result, hasValidCalculation);
 
-    final records = ref.watch(purchaseRecordsProvider).valueOrNull ?? [];
-    final history = records.map((r) => r.workmanshipPercent).toList();
-    final assessment = hasValidCalculation
-        ? DealQualityEvaluator.evaluate(
-            workmanshipPercent: result.workmanshipPercent,
-            history: history,
-          )
-        : null;
 
     final theme = Theme.of(context);
     final derivedStyle = theme.textTheme.bodySmall?.copyWith(
@@ -318,10 +310,10 @@ class _RetailBreakdownScreenState
                   ),
                 ],
               ),
-              if (assessment != null) ...[
-                const SizedBox(height: 12),
-                DealIndicator(assessment: assessment),
-              ],
+              // if (assessment != null) ...[
+              //   const SizedBox(height: 12),
+              //   DealIndicator(assessment: assessment),
+              // ],
             ],
           ),
           if (hasValidCalculation) ...[
