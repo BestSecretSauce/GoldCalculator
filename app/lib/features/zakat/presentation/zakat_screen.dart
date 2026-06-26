@@ -5,6 +5,7 @@ import '../../../app/widgets/language_toggle_button.dart';
 import '../../../app/widgets/results_card.dart';
 import '../../../app/widgets/stat_row.dart';
 import '../../../l10n/generated/app_localizations.dart';
+import '../../price_tracking/application/gold_price_provider.dart';
 import '../logic/zakat_rule.dart';
 import '../logic/zakat_rule_provider.dart';
 
@@ -19,6 +20,8 @@ class _ZakatScreenState extends ConsumerState<ZakatScreen> {
   final _weightController = TextEditingController();
   final _priceController = TextEditingController();
   bool _hawlMet = true;
+  String? _lastSyncedPriceText;
+  DateTime? _lastSyncedSnapshotTimestamp;
 
   @override
   void dispose() {
@@ -27,11 +30,38 @@ class _ZakatScreenState extends ConsumerState<ZakatScreen> {
     super.dispose();
   }
 
+  void _applyLivePrice(double price) {
+    final text = price.toStringAsFixed(2);
+    _priceController.text = text;
+    _lastSyncedPriceText = text;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     final rule = ref.watch(zakatRuleProvider);
+
+    final snapshot = ref.watch(goldPricesProvider).valueOrNull;
+    final karats = snapshot?.karats;
+    if (karats != null && karats.isNotEmpty) {
+      final karat24Key = karats.keys.firstWhere(
+        (k) => k.contains('24'),
+        orElse: () => karats.keys.first,
+      );
+      final price24k = karats[karat24Key]?.buy;
+      if (price24k != null) {
+        if (_lastSyncedSnapshotTimestamp == null) {
+          _applyLivePrice(price24k);
+          _lastSyncedSnapshotTimestamp = snapshot!.timestamp;
+        } else if (snapshot!.timestamp != _lastSyncedSnapshotTimestamp) {
+          if (_priceController.text == _lastSyncedPriceText) {
+            _applyLivePrice(price24k);
+          }
+          _lastSyncedSnapshotTimestamp = snapshot.timestamp;
+        }
+      }
+    }
     final weight = double.tryParse(_weightController.text) ?? 0;
     final price = double.tryParse(_priceController.text) ?? 0;
 
@@ -65,6 +95,20 @@ class _ZakatScreenState extends ConsumerState<ZakatScreen> {
             decoration: InputDecoration(
               labelText: l10n.goldPrice24kLabel,
               prefixIcon: const Icon(Icons.trending_up),
+              suffixIcon: karats != null && karats.isNotEmpty
+                  ? IconButton(
+                      icon: const Icon(Icons.sync),
+                      tooltip: l10n.goldPrice24kLabel,
+                      onPressed: () {
+                        final key = karats.keys.firstWhere(
+                          (k) => k.contains('24'),
+                          orElse: () => karats.keys.first,
+                        );
+                        final price = karats[key]?.buy;
+                        if (price != null) setState(() => _applyLivePrice(price));
+                      },
+                    )
+                  : null,
             ),
             onChanged: (_) => setState(() {}),
           ),
