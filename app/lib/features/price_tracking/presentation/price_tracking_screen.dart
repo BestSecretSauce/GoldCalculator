@@ -9,26 +9,18 @@ import '../logic/price_change_calculator.dart';
 import 'widgets/karat_price_table.dart';
 import 'widgets/last_updated_banner.dart';
 
-class PriceTrackingScreen extends ConsumerStatefulWidget {
+class PriceTrackingScreen extends ConsumerWidget {
   const PriceTrackingScreen({super.key});
 
-  @override
-  ConsumerState<PriceTrackingScreen> createState() =>
-      _PriceTrackingScreenState();
-}
-
-class _PriceTrackingScreenState extends ConsumerState<PriceTrackingScreen> {
-  PriceChangePeriod _selectedPeriod = PriceChangePeriod.day;
-
   Widget _buildBody(
+    BuildContext context,
     AsyncValue<GoldPriceSnapshot> pricesAsync,
-    Map<String, double> priceChanges,
+    double? dayChange,
+    double? weekChange,
+    double? monthChange,
     AppLocalizations l10n,
+    WidgetRef ref,
   ) {
-    // Always prefer showing data over loading/error states. valueOrNull
-    // returns the cached snapshot even when a background refresh is in
-    // progress or has failed, so users see prices immediately on every
-    // visit after the first one.
     final snapshot = pricesAsync.valueOrNull;
 
     if (snapshot != null) {
@@ -43,18 +35,14 @@ class _PriceTrackingScreenState extends ConsumerState<PriceTrackingScreen> {
           const SizedBox(height: 16),
           KaratPriceTable(
             karats: snapshot.karats,
-            priceChanges: priceChanges,
-            selectedPeriod: _selectedPeriod,
-            onPeriodChanged: (period) =>
-                setState(() => _selectedPeriod = period),
+            dayChange: dayChange,
+            weekChange: weekChange,
+            monthChange: monthChange,
           ),
         ],
       );
     }
 
-    // No cached data at all — first-ever launch while server is still
-    // waking up (Render free-tier cold start). Show a spinner while
-    // loading, or a soft offline prompt if the connection timed out.
     if (pricesAsync.isLoading) {
       return const Center(
         key: ValueKey('loading'),
@@ -62,7 +50,6 @@ class _PriceTrackingScreenState extends ConsumerState<PriceTrackingScreen> {
       );
     }
 
-    // Error with no data to fall back on: friendly offline state.
     return ListView(
       key: const ValueKey('offline'),
       children: [
@@ -79,8 +66,7 @@ class _PriceTrackingScreenState extends ConsumerState<PriceTrackingScreen> {
           child: FilledButton.icon(
             icon: const Icon(Icons.refresh),
             label: const Text('Retry'),
-            onPressed: () =>
-                ref.read(goldPricesProvider.notifier).refresh(),
+            onPressed: () => ref.read(goldPricesProvider.notifier).refresh(),
           ),
         ),
       ],
@@ -88,14 +74,21 @@ class _PriceTrackingScreenState extends ConsumerState<PriceTrackingScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final pricesAsync = ref.watch(goldPricesProvider);
     final history = ref.watch(goldPriceHistoryProvider).valueOrNull ?? [];
-    final priceChanges = PriceChangeCalculator.calculate(
-      history: history,
-      period: _selectedPeriod,
-    );
+
+    // All karats move by the same percentage so one value per period is enough.
+    double? firstChange(PriceChangePeriod period) {
+      final changes =
+          PriceChangeCalculator.calculate(history: history, period: period);
+      return changes.values.firstOrNull;
+    }
+
+    final dayChange = firstChange(PriceChangePeriod.day);
+    final weekChange = firstChange(PriceChangePeriod.week);
+    final monthChange = firstChange(PriceChangePeriod.month);
 
     return Scaffold(
       appBar: AppBar(
@@ -112,7 +105,8 @@ class _PriceTrackingScreenState extends ConsumerState<PriceTrackingScreen> {
         onRefresh: () => ref.read(goldPricesProvider.notifier).refresh(),
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 250),
-          child: _buildBody(pricesAsync, priceChanges, l10n),
+          child: _buildBody(
+              context, pricesAsync, dayChange, weekChange, monthChange, l10n, ref),
         ),
       ),
     );
