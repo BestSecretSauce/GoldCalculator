@@ -19,7 +19,6 @@ class ZakatScreen extends ConsumerStatefulWidget {
 class _ZakatScreenState extends ConsumerState<ZakatScreen> {
   final _weightController = TextEditingController();
   final _priceController = TextEditingController();
-  bool _hawlMet = true;
   String? _lastSyncedPriceText;
   DateTime? _lastSyncedSnapshotTimestamp;
 
@@ -68,7 +67,7 @@ class _ZakatScreenState extends ConsumerState<ZakatScreen> {
     final result = rule.calculate(ZakatInput(
       totalGoldWeightGrams: weight,
       pricePerGram24k: price,
-      hawlMet: _hawlMet,
+      hawlMet: true,
     ));
 
     return Scaffold(
@@ -111,17 +110,6 @@ class _ZakatScreenState extends ConsumerState<ZakatScreen> {
                   : null,
             ),
             onChanged: (_) => setState(() {}),
-          ),
-          const SizedBox(height: 8),
-          Card(
-            child: SwitchListTile(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(24),
-              ),
-              title: Text(l10n.hawlMetLabel),
-              value: _hawlMet,
-              onChanged: (v) => setState(() => _hawlMet = v),
-            ),
           ),
           const SizedBox(height: 24),
           ResultsCard(
